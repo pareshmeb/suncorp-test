@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,6 +22,7 @@ public class DispenseController {
 	@Autowired
 	CurrencyDao currencyDoo;
 	
+	@CrossOrigin
 	@PutMapping("/dispence/{amount}")
 	public Response dispenceMoney(@PathVariable Integer amount) {
 		CurrencyValidator currencyValidator = new CurrencyValidator(amount);
@@ -48,6 +50,7 @@ public class DispenseController {
 		}
 	}
 	
+	@CrossOrigin
 	@GetMapping(value="/")
 	public List<Currency> getAvailableNotes() {
 		return currencyDoo.findAllByOrderByValueDesc();
